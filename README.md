@@ -1,173 +1,146 @@
-Here's a single, clean, copy-paste-ready `README.md` file for your project **DatumTrace**. Just paste this directly into your `README.md` and you're good to go.
-
----
-
 ```markdown
 # 🛰️ DatumTrace
 
-> **Modular OSINT Recon System for Emails, Usernames, and Social Metadata**  
-> CLI-based. Configurable. Clean Output. Zero bloat. Built for hackers, researchers, and cyber forensics.
+<p align="center">
+  <img src="./datum.png" width="750" alt="DatumTrace Banner"/>
+</p>
+
+**DatumTrace** is a modular, terminal-based **OSINT data scraping framework** that pulls emails, usernames, and social profiles from public sources based on a given **name or domain**.
+
+Designed for privacy researchers, threat hunters, and data investigators — **not a release tool**, but a clean, extendable backend with each module usable as a standalone experiment.
 
 ---
 
-## ⚡ Overview
+## 🔧 Features
 
-**DatumTrace** is a Linux-first, multi-language OSINT data scraper that extracts:
-- 📧 Email addresses from public sources (search engines, code dumps, paste sites)
-- 🙍‍♂️ Usernames and social profile traces across platforms
-- 🌐 Domain metadata (WHOIS and DNS) via terminal scripts
-
-Designed as a **research-first recon system**, each component is modular and published as an **experiment** — not bundled bloatware.
-
----
-
-## 🛠️ Features
-
-- ✅ Email & username scraping via search engine footprints  
-- ✅ Modular config with YAML-based source toggling  
-- ✅ Platform-aware username verification (GitHub, Twitter, Instagram, etc.)  
-- ✅ Shell scripts for WHOIS and DNS enumeration  
-- ✅ Regex-driven experiments for testing extraction logic  
-- ✅ No GUI – pure CLI utility, easily pipeable in scripts  
+- 🕵️ Extracts emails, usernames, and social media profiles from various open web sources.
+- 📦 Modular Python + YAML structure for easy expansion.
+- 🌐 Cross-language design — uses Python, YAML, Bash (and future plugin options).
+- ⚙️ CLI interface only — zero GUI clutter.
+- 🧪 Each module is cleanly separable for publishing as standalone “experiments”.
 
 ---
 
-## 🔧 Tech Stack
-
-| Language     | Purpose                        |
-|--------------|--------------------------------|
-| **Python**   | Core scrapers (requests + bs4) |
-| **Bash**     | WHOIS + DNS enumeration        |
-| **YAML**     | Config-driven source logic     |
-| *(Rust)*     | *(optional high-speed engine – WIP)* |
-
-
+## 📁 Project Structure
 ---
 
 ## 🚀 Quick Start
 
-### 📦 Install Dependencies
+### 1️⃣ Install Dependencies
+
+Requires Python 3.9+
 
 ```bash
-git clone https://github.com/yourname/datumtrace.git
-cd datumtrace
 pip install -r requirements.txt
-chmod +x scripts/*.sh
 ````
 
----
-
-## 📌 Usage
-
-### 🔍 Email Recon
+Optional (for some experiments):
 
 ```bash
-python3 main.py example.com --emails
+sudo apt install curl jq whois
 ```
 
-### 👤 Social Username Recon
+---
+
+### 2️⃣ Run the Scraper
+
+By name:
 
 ```bash
-python3 main.py johndoe --users
+python main.py --name "John Doe"
 ```
 
-### 📡 WHOIS Metadata Lookup
+By domain:
 
 ```bash
-bash scripts/whois_lookup.sh example.com
-```
-
-### 🌐 DNS Subdomain Brute Force
-
-```bash
-bash scripts/dns_enum.sh example.com
+python main.py --domain "example.com"
 ```
 
 ---
 
-## 🧪 Experiments Directory
+## ⚙️ CLI Options
 
-| Path                                 | Description                              |
-| ------------------------------------ | ---------------------------------------- |
-| `email_patterns/detect_from_text.py` | Email regex extractor from raw HTML/text |
-| `social_extract/regex_profiles.py`   | Profile link finder via regex            |
-| `test_data/example_html.html`        | Static mock data for testing             |
-
----
-
-## 📚 Documentation
-
-### 🔹 `sources.yaml`
-
-Customizable source control for scraping:
-
-* Enable/disable search patterns
-* Add/remove social platforms
-* Switch between search engines (Google, Bing)
-* Define custom headers
-
-### 🔹 `modules/*.py`
-
-Reusable components:
-
-* `email_harvest.py`: Query-based email grabber from search engine pages
-* `username_lookup.py`: Profile presence validation
-* `utils.py`: Loads config, builds headers
-
-### 🔹 `scripts/*.sh`
-
-CLI utilities:
-
-* WHOIS metadata scan
-* DNS brute-forcing for common subdomains
+| Flag       | Description                     |
+| ---------- | ------------------------------- |
+| `--name`   | Full name to search             |
+| `--domain` | Domain to search                |
+| `--output` | Save results to file (optional) |
+| `--debug`  | Enable verbose debug logging    |
 
 ---
 
-## 🚨 Legal & Usage Disclaimer
+## 🔌 sources.yaml Sample
 
-```
-🛑 WARNING: USE RESPONSIBLY
+```yaml
+email_sources:
+  - name: hunter.io
+    url: "https://api.hunter.io/v2/email-finder"
+    api_key_required: true
 
-DatumTrace is provided for educational and research purposes only.
+social_sources:
+  - name: github
+    url_template: "https://github.com/{username}"
 
-- Do NOT use it to attack, stalk, or harass any individual or organization.
-- Use only on data, domains, and profiles you are legally authorized to analyze.
-- Respect the Terms of Service of all target websites.
-- The developer(s) are not responsible for any misuse of this tool or its components.
+username_sources:
+  - name: namechk
+    url_template: "https://namechk.com/{username}"
 ```
 
-> By using this project, you agree to take full responsibility for any actions performed using it.
+---
+
+## 🧠 Philosophy
+
+> DatumTrace is **not** a one-click OSINT tool.
+> It is a **clean, teachable, extensible backend framework**.
+
+* Each module is minimal, self-contained, and reusable.
+* Promotes learning through experimentation.
+* Ideal for building out your own plugins or pipelines.
 
 ---
 
-## 💡 Naming Philosophy
+## ⚠️ Disclaimer
 
-> **DatumTrace** = “The subtle, often overlooked trail of publicly exposed data”
+**DatumTrace is for educational and research purposes only.**
+Do not use this for any illegal, unethical, or unauthorized data collection.
 
-This is not a “tool” — it’s a recon research framework that encourages experimentation, trace analysis, and composable intelligence gathering.
-
----
-
-## 🗓️ Roadmap / TODO
-
-* [ ] Add high-speed Rust-powered scraper
-* [ ] Add Shodan / Hunter.io API integrations
-* [ ] Export JSON/CSV logs
-* [ ] Memory-efficient streaming search
-* [ ] Add SOCKS5/Tor support
+We are **not responsible** for how this code is used.
 
 ---
 
-## 📄 License
+## 📜 License
 
-**MIT License**
-Free to use, modify, and share — responsibly.
+Licensed under the MIT License.
 
 ---
 
-## 👨‍💻 Author
+## 👥 Credits
 
-Built by \[T4tsuk3i]
-Part of the **Experimental Recon Suite** series
+* Inspired by: [Photon](https://github.com/s0md3v/Photon), [Sherlock](https://github.com/sherlock-project/sherlock), [SpiderFoot](https://github.com/smicallef/spiderfoot)
+* Built with: `requests`, `aiohttp`, `PyYAML`, `BeautifulSoup4`, standard libraries
 
+---
+
+## ⭐ Like the idea?
+
+Star this repo. Fork and build your own modules.
+If you make a cool scraper, consider sharing it back as an `experiment`!
+
+---
+
+```
+
+---
+
+### ✅ How it looks:
+- 🖼️ Banner is centered and resizes nicely
+- 📄 Sections are structured with headings and tables
+- 🧪 Experiments and source plugins are well explained
+- 🧠 Emphasizes clean modular usage over "ready-to-use" UI tools
+
+Let me know if you want:
+- Dark-mode-friendly `datum.png`
+- Auto-generated documentation
+- GitHub badges (e.g., license, build, Python version)
+- A `docs/` folder with deeper usage/tutorial files
 ```
