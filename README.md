@@ -1,4 +1,3 @@
-```markdown
 <p align="center">
   <img src="https://raw.githubusercontent.com/T4tsuk3i/DatumTrace/master/datum.png" width="300" alt="DatumTrace Banner"/>
 </p>
@@ -35,32 +34,27 @@ based on **name or domain keywords**, across multiple public sources.
 - Modular file layout for easy experimentation
 
 ---
+---
 
 ## 🚀 Usage
 
 > ⚠️ Ensure dependencies are installed:
 
-```bash
+```
 pip install -r requirements.txt
-````
 
-> 🔍 Run the OSINT scraper with a name or domain:
-
-```bash
+```
+```
 python main.py --target "elonmusk"
 ```
 
-> 📂 Output will be saved to:
+## 📂 Output will be saved to:
 
-```bash
 data/output.json
-```
-
----
 
 ## 📑 Example Output
 
-```json
+```
 {
   "emails": ["contact@domain.com", "admin@xyz.org"],
   "usernames": ["elonmusk", "realelon"],
@@ -71,25 +65,18 @@ data/output.json
 }
 ```
 
----
-
 ## ⚙️ Add New Sources
-
-New scrapers can be added in `sources/sources.yaml`. Each source includes:
-
-```yaml
+New scrapers can be added in sources/sources.yaml. Each source includes:
+```
 - name: "Twitter"
   type: "profile"
   url: "https://twitter.com/{query}"
   enabled: true
 ```
-
----
-
 ## 📜 Disclaimer
 
-> This project is intended for **educational and ethical research** purposes only.
-> Do not use this tool to target, harass, or collect data on individuals without their explicit consent.
+> This project is intended for **educational and ethical research** purposes only.  
+> Do not use this tool to target, harass, or collect data on individuals without their explicit consent.  
 > The authors take **no responsibility** for misuse.
 
 ---
@@ -98,11 +85,10 @@ New scrapers can be added in `sources/sources.yaml`. Each source includes:
 
 This is a **research framework**, not a weaponized tool.
 
-* Modules are decoupled and meant to be studied, modified, or extended.
-* Each one can be tested independently.
-* CLI only — no GUI, no auto-spam behavior.
+- Modules are decoupled and meant to be studied, modified, or extended.  
+- Each one can be tested independently.  
+- CLI only — no GUI, no auto-spam behavior.
 
----
 
-<p align="center"><b>Built for security education, not exploitation.</b></p>
-```
+
+
