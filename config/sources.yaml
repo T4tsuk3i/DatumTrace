@@ -1,0 +1,54 @@
+# OSINT Scraper Source Configuration
+
+headers:
+  default:
+    User-Agent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    Accept-Language: "en-US,en;q=0.9"
+    Connection: "keep-alive"
+
+email_sources:
+  - query: "{target} email"
+    engine: "google"
+    enabled: true
+
+  - query: "site:pastebin.com {target}"
+    engine: "google"
+    enabled: true
+
+  - query: "site:github.com {target} @gmail.com"
+    engine: "google"
+    enabled: true
+
+username_sources:
+  - platform: "GitHub"
+    url: "https://github.com/{username}"
+    method: "GET"
+    enabled: true
+
+  - platform: "Twitter"
+    url: "https://twitter.com/{username}"
+    method: "GET"
+    enabled: true
+
+  - platform: "Instagram"
+    url: "https://www.instagram.com/{username}"
+    method: "GET"
+    enabled: true
+
+  - platform: "Reddit"
+    url: "https://www.reddit.com/user/{username}"
+    method: "GET"
+    enabled: false
+
+search_engines:
+  google:
+    base_url: "https://www.google.com/search?q={query}"
+    method: "GET"
+    pagination: false
+    enabled: true
+
+  bing:
+    base_url: "https://www.bing.com/search?q={query}"
+    method: "GET"
+    pagination: false
+    enabled: false
