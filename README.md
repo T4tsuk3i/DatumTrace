@@ -2,7 +2,7 @@
 # 🛰️ DatumTrace
 
 <p align="center">
-  <img src="./datum.png" width="750" alt="DatumTrace Banner"/>
+  <img src="datum.png" width="750" alt="DatumTrace Banner"/>
 </p>
 
 **DatumTrace** is a modular, terminal-based **OSINT data scraping framework** that pulls emails, usernames, and social profiles from public sources based on a given **name or domain**.
